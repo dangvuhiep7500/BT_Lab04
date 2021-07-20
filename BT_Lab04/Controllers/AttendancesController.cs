@@ -18,7 +18,9 @@ namespace BT_Lab04.Controllers
             BigSchoolContext db = new BigSchoolContext();
             if(db.Attendances.Any(p => p.Attendee == userID && p.CourseId == attendanceDTO.Id))
             {
-                return BadRequest("The attendance already exists!");
+                db.Attendances.Remove(db.Attendances.SingleOrDefault(p =>p.Attendee == userID && p.CourseId == attendanceDTO.Id));
+                db.SaveChanges();
+                return Ok("cancel");
             }
             var attendance = new Attendance() { CourseId = attendanceDTO.Id, Attendee = User.Identity.GetUserId() };
             db.Attendances.Add(attendance);

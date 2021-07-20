@@ -35,6 +35,10 @@ namespace BT_Lab04.Models
         public string LectureName;
         public List<Category> ListCategory = new List<Category>();
 
+        public bool isLogin = false;
+        public bool isShowGoing = false;
+        public bool isShowFollow = false;
+
         public virtual Category Category { get; set; }
     }
 }
